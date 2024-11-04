@@ -37,7 +37,7 @@ unique_dates = filtered_df['Short Date'].unique()
 # Group by unique date, state, and count occurrences
 state_count = filtered_df.groupby(['Short Date', 'State']).size().reset_index(name='Count')
 
-# Create a bar chart with different colors for each state
+# Create a clustered bar chart with different colors for each state
 chart = alt.Chart(state_count).mark_bar().encode(
     x='Short Date',
     y='Count',
