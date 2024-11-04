@@ -32,5 +32,5 @@ st.write(filtered_df)
 
 st.bar_chart(
     filtered_df,
-    x=["State"]
+    x=["State"],
     y=["Open Date"])
