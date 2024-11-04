@@ -30,3 +30,11 @@ else:
         filtered_df = filtered_df[filtered_df['State'] == status_radio]
 
 st.write(filtered_df)
+# Get unique short dates from Open Date
+unique_dates = filtered_df['Open Date'].dt.date.unique()
+
+# Group by unique date and state, then count occurrences
+state_count = filtered_df.groupby(['Open Date', 'State']).size().reset_index(name='Count')
+
+# Create a bar chart
+st.bar_chart(state_count)
