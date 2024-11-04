@@ -35,7 +35,7 @@ df = pd.read_csv("SampleData.csv")
 chart = False
 if inc_selectbox == "All":
     if status_radio != "All":
-     chart = True
+        chart = True
         filtered_df = df[df['State'] == status_radio]
     else: 
         filtered_df = df
