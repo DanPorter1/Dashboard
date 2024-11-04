@@ -17,7 +17,7 @@ def barchart():
     # Plot grouped bar chart with adjusted bargap to make bars touch
     fig = px.bar(melted_df, x='Unique Date', y='Total Incidents', color='State', barmode='group', labels={'value': 'Total Incidents', 'Unique Date': 'Date'}).update_traces(marker=dict(line=dict(width=0)))
     
-    st.plotly_chart(fig)
+    return st.plotly_chart(fig)
 #==============================================================#
 
 with st.sidebar:
