@@ -19,7 +19,6 @@ def barchart():
     
     return st.plotly_chart(fig)
 #==============================================================#
-st.write(filtered_df)
 
 with st.sidebar:
     st.write("Testing")
