@@ -21,3 +21,4 @@ if inc_selectbox == "All":
     st.write(df)
 else:
     filtered_df = df.loc[df['Incident Summary'] == inc_selectbox]
+    st.write(filtered_df)
