@@ -37,7 +37,10 @@ filtered_df['Short Date'] = filtered_df['Open Date'].astype(str).str[:11]
 # Group by unique date, state, and count occurrences
 state_count = filtered_df.groupby(['Short Date', 'State']).size().reset_index(name='Count')
 
+# Pivot the data to have State as columns
+state_pivot = state_count.pivot(index='Short Date', columns='State', values='Count').fillna(0).reset_index()
+
 # Create a clustered bar chart with Plotly
-fig = px.bar(state_count, x='Short Date', y='Count', color='State', barmode='group')
+fig = px.bar(state_pivot, x='Short Date', y=['Closed', 'On Hold', 'Open'], barmode='group')
 
 st.plotly_chart(fig)
