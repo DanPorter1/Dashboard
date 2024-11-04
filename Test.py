@@ -50,7 +50,8 @@ chart2 = alt.Chart(grouped_open_date).mark_bar().encode(
 chart3 = alt.Chart(grouped_total).mark_bar().encode(
   x='Open Date Short',
   y='Count',
-  color='State'
+  color='State',
+  column='State'
 )
 
 st.altair_chart(chart1 + chart2 + chart3, use_container_width=True)
