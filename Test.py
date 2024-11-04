@@ -54,4 +54,4 @@ chart3 = alt.Chart(grouped_total).mark_bar().encode(
   column='State'
 )
 
-st.altair_chart(chart1 + chart2 + chart3, use_container_width=True)
+st.altair_chart(chart3, use_container_width=True)
