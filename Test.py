@@ -31,8 +31,8 @@ else:
 st.write(filtered_df)
 
 grouped_df = filtered_df.groupby('State').size().reset_index(name='count')
-st.bar_chart(grouped_df, x='State', y='count')
+st.bar_chart(grouped_df, x='State', y='Count')
 
 filtered_df['Open Date Short'] = filtered_df['Open Date'].str[:11]
 grouped_open_date = filtered_df.groupby('Open Date Short')['Open Date'].nunique().reset_index(name='unique_count')
-st.bar_chart(grouped_open_date, x='Open Date Short', y='unique_count')
+st.bar_chart(grouped_open_date, x='Open Date Short', y='Count')
