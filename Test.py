@@ -34,8 +34,17 @@ st.write(filtered_df)
 filtered_df['Short Date'] = filtered_df['Open Date'].astype(str).str[:11]
 unique_dates = filtered_df['Short Date'].unique()
 
-# Group by unique date and state, then count occurrences
+# Group by unique date, state, and count occurrences
 state_count = filtered_df.groupby(['Short Date', 'State']).size().reset_index(name='Count')
 
-# Create a bar chart
-st.bar_chart(state_count)
+# Create a bar chart with different colors for each state
+chart = alt.Chart(state_count).mark_bar().encode(
+    x='Short Date',
+    y='Count',
+    color='State'
+).properties(
+    width=600,
+    height=400
+)
+
+st.altair_chart(chart, use_container_width=True)
