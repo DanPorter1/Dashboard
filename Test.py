@@ -17,6 +17,13 @@ with st.sidebar:
 
 df = pd.read_csv("SampleData.csv")
 st.dataframe(df)
+if 'selectbox_changed' not in st.session_state:
+    st.session_state.selectbox_changed = False
+
+if add_selectbox != st.session_state.selected_incident_type:
+    st.session_state.selected_incident_type = add_selectbox
+    st.session_state.selectbox_changed = True
+
 if st.session_state.selectbox_changed:
     filtered_df = df[df['Incident Summary'].str.contains(add_selectbox)]
     st.dataframe(filtered_df)
