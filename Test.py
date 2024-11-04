@@ -20,10 +20,5 @@ df = pd.read_csv("SampleData.csv")
 if inc_selectbox == "All":
     st.write(df)
 else:
-    filtered_df = df.loc[df['Incident Summary'] == inc_selectbox]
-    st.write(filtered_df)
-if status_radio == "All":
-    st.write(df)
-else: 
-    filtered_df = df.loc[df['State'] == status_radio]
+    filtered_df = df[(df['Incident Summary'] == inc_selectbox) & (df['State'] == status_radio)]
     st.write(filtered_df)
