@@ -39,9 +39,11 @@ if inc_selectbox == "All":
         filtered_df = df[df['State'] == status_radio]
     else: 
         filtered_df = df
+        st.write(filtered_df)
         barchart()
 else:
     filtered_df = df[(df['Incident Summary'] == inc_selectbox) & (df['State'] == status_radio)]
     
     if status_radio != "All":
         filtered_df = filtered_df[filtered_df['State'] == status_radio]
+st.write(filtered_df)
