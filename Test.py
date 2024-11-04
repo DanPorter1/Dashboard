@@ -18,4 +18,4 @@ with st.sidebar:
 df = pd.read_csv("SampleData.csv")
 st.dataframe(df)
 
-df.loc[(df['Incident Summary']=inc_selectbox)]
+df.loc[df['Incident Summary'] == inc_selectbox]
