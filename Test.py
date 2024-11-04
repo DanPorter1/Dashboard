@@ -37,19 +37,17 @@ filtered_df['Open Date Short'] = filtered_df['Open Date'].str[:11]
 grouped_open_date = filtered_df.groupby('Open Date Short')['Open Date'].nunique().reset_index(name='Count')
 grouped_total = filtered_df.groupby(['State', 'Open Date Short']).size().reset_index(name='Count')
 
-mark_bar(stroke='black')
-
-chart1 = alt.Chart(grouped_df).mark_bar().encode(
+chart1 = alt.Chart(grouped_df).mark_bar(stroke='black').encode(
     x='State',
     y='Count'
 )
 
-chart2 = alt.Chart(grouped_open_date).mark_bar().encode(
+chart2 = alt.Chart(grouped_open_date).mark_bar(stroke='black').encode(
     x='Open Date Short',
     y='Count'
 )
 
-chart3 = alt.Chart(grouped_total).mark_bar(width=10).encode(
+chart3 = alt.Chart(grouped_total).mark_bar(width=10, stroke='black').encode(
   x=alt.X('Open Date Short', sort=alt.EncodingSortField(field='Count', order='descending')),
   y='Count',
   color='State',
