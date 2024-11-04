@@ -55,7 +55,4 @@ chart3 = alt.Chart(grouped_total).encode(
 )
 combined_chart = chart1 | chart2 | chart3
 
-combined_chart = chart1 | chart2 | chart3
-
-st.markdown(f'<style>div.stDataFrame > div{width: 100% !important;}</style>', unsafe_allow_html=True)
-st.altair_chart(combined_chart, use_container_width=False)
+st.altair_chart(combined_chart, use_container_width=True)
