@@ -19,6 +19,7 @@ def barchart():
     
     return st.plotly_chart(fig)
 #==============================================================#
+st.write(filtered_df)
 
 with st.sidebar:
     st.write("Testing")
@@ -44,5 +45,3 @@ else:
     
     if status_radio != "All":
         filtered_df = filtered_df[filtered_df['State'] == status_radio]
-
-st.write(filtered_df)
