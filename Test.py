@@ -33,6 +33,7 @@ else:
 st.write(filtered_df)
 #==============================================================#
 
+df['Unique Date'] = df['Open Date'].str[:11]
 grouped_df = filtered_df.groupby(['Unique Date', 'State']).size().reset_index(name='Total Incidents')
 
 # Plot grouped bar chart
