@@ -19,7 +19,7 @@ df = pd.read_csv("SampleData.csv")
 
 if inc_selectbox == "All":
     if status_radio != "All":
-        filtered_df = filtered_df[filtered_df['State'] == status_radio]
+        filtered_df = df[df['State'] == status_radio]
     else: 
         filtered_df = df
 else:
