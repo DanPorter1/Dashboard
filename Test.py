@@ -1,6 +1,7 @@
 # streamlit run test.py
 import streamlit as st
 import pandas as pd
+import altair as alt
 
 st.title("Dashboard")
 
@@ -30,12 +31,19 @@ else:
 
 st.write(filtered_df)
 
+
 grouped_df = filtered_df.groupby('State').size().reset_index(name='Count')
 filtered_df['Open Date Short'] = filtered_df['Open Date'].str[:11]
 grouped_open_date = filtered_df.groupby('Open Date Short')['Open Date'].nunique().reset_index(name='Count')
 
-grouped_df['color'] = 'blue'
-grouped_open_date['color'] = 'red'
+chart1 = alt.Chart(grouped_df).mark_bar().encode(
+    x='State',
+    y='Count'
+)
 
-st.bar_chart(grouped_df, x='State', y='Count', color='color')
-st.bar_chart(grouped_open_date, x='Open Date Short', y='Count', color='color')
+chart2 = alt.Chart(grouped_open_date).mark_bar().encode(
+    x='Open Date Short',
+    y='Count'
+)
+
+st.altair_chart(chart1 + chart2, use_container_width=True)
