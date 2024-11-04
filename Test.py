@@ -38,21 +38,11 @@ grouped_open_date = filtered_df.groupby('Open Date Short')['Open Date'].nunique(
 grouped_total = filtered_df.groupby(['State', 'Open Date Short']).size().reset_index(name='Count')
 
 chart1 = alt.Chart(grouped_df).encode(x='State', y='Count')
-    x='State',
-    y='Count'
-)
 
 chart2 = alt.Chart(grouped_open_date).encode(x='Open Date Short', y='Count')
-    x='Open Date Short',
-    y='Count'
-)
 
 chart3 = alt.Chart(grouped_total).encode(x=alt.X('Open Date Short', sort=alt.EncodingSortField(field='Count', order='descending')), y='Count', color='State', column='State')
-  x=alt.X('Open Date Short', sort=alt.EncodingSortField(field='Count', order='descending')),
-  y='Count',
-  color='State',
-  column='State'
-)
+
 combined_chart = chart1 | chart2 | chart3
 
 st.altair_chart(combined_chart, use_container_width=True)
