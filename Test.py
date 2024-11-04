@@ -32,14 +32,16 @@ with st.sidebar:
     )
 
 df = pd.read_csv("SampleData.csv")
-
+chart = False
 if inc_selectbox == "All":
     if status_radio != "All":
+     chart = True
         filtered_df = df[df['State'] == status_radio]
     else: 
         filtered_df = df
         st.write(filtered_df)
-        barchart()
+        if chart = False:
+            barchart()
 else:
     filtered_df = df[(df['Incident Summary'] == inc_selectbox) & (df['State'] == status_radio)]
     
