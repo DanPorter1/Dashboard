@@ -40,7 +40,7 @@ if inc_selectbox == "All":
     else: 
         filtered_df = df
         st.write(filtered_df)
-        if chart = False:
+        if chart == False:
             barchart()
 else:
     filtered_df = df[(df['Incident Summary'] == inc_selectbox) & (df['State'] == status_radio)]
