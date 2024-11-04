@@ -30,4 +30,4 @@ else:
 
 st.write(filtered_df)
 
-st.bar_chart(filtered_df[['State', 'Open Date']]
+st.bar_chart(filtered_df[['State', 'Open Date']])
