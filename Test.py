@@ -1,4 +1,4 @@
-# streamlit run test.py
+ # streamlit run test.py
 import streamlit as st
 import pandas as pd
 import altair as alt
@@ -24,6 +24,7 @@ if inc_selectbox == "All":
         filtered_df = df[df['State'] == status_radio]
     else: 
         filtered_df = df
+        barchart()
 else:
     filtered_df = df[(df['Incident Summary'] == inc_selectbox) & (df['State'] == status_radio)]
     
@@ -32,15 +33,15 @@ else:
 
 st.write(filtered_df)
 #==============================================================#
-
-df['Unique Date'] = df['Open Date'].str[:11]
-# Group by 'Unique Date' and 'State' to get total incidents for each state on each unique date
-grouped_df = filtered_df.groupby(['Unique Date', 'State']).size().unstack(fill_value=0).reset_index()
-
-# Melt the dataframe to have states as a single column
-melted_df = pd.melt(grouped_df, id_vars=['Unique Date'], var_name='State', value_name='Total Incidents')
-
-# Plot grouped bar chart with adjusted bargap to make bars touch
-fig = px.bar(melted_df, x='Unique Date', y='Total Incidents', color='State', barmode='group', labels={'value': 'Total Incidents', 'Unique Date': 'Date'}).update_traces(marker=dict(line=dict(width=0)))
-
-st.plotly_chart(fig)
+def barchart():
+    df['Unique Date'] = df['Open Date'].str[:11]
+    # Group by 'Unique Date' and 'State' to get total incidents for each state on each unique date
+    grouped_df = filtered_df.groupby(['Unique Date', 'State']).size().unstack(fill_value=0).reset_index()
+    
+    # Melt the dataframe to have states as a single column
+    melted_df = pd.melt(grouped_df, id_vars=['Unique Date'], var_name='State', value_name='Total Incidents')
+    
+    # Plot grouped bar chart with adjusted bargap to make bars touch
+    fig = px.bar(melted_df, x='Unique Date', y='Total Incidents', color='State', barmode='group', labels={'value': 'Total Incidents', 'Unique Date': 'Date'}).update_traces(marker=dict(line=dict(width=0)))
+    
+    st.plotly_chart(fig)
