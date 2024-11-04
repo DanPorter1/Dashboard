@@ -34,9 +34,13 @@ st.write(filtered_df)
 #==============================================================#
 
 df['Unique Date'] = df['Open Date'].str[:11]
-grouped_df = filtered_df.groupby(['Unique Date', 'State']).size().reset_index(name='Total Incidents')
+# Group by 'Unique Date' and 'State' to get total incidents for each state on each unique date
+grouped_df = filtered_df.groupby(['Unique Date', 'State']).size().unstack(fill_value=0).reset_index()
+
+# Melt the dataframe to have states as a single column
+melted_df = pd.melt(grouped_df, id_vars=['Unique Date'], var_name='State', value_name='Total Incidents')
 
 # Plot grouped bar chart
-fig = px.bar(grouped_df, x='Unique Date', y='Total Incidents', color='State', barmode='group')
+fig = px.bar(melted_df, x='Unique Date', y='Total Incidents', color='State', barmode='group', labels={'value': 'Total Incidents', 'Unique Date': 'Date'})
 
 st.plotly_chart(fig)
