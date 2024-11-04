@@ -33,8 +33,8 @@ st.write(filtered_df)
 
 
 # grouped_df = filtered_df.groupby('State').size().reset_index(name='Count')
-# filtered_df['Open Date Short'] = filtered_df['Open Date'].str[:11]
-# grouped_open_date = filtered_df.groupby('Open Date Short')['Open Date'].nunique().reset_index(name='Count')
+filtered_df['Open Date Short'] = filtered_df['Open Date'].str[:11]
+grouped_open_date = filtered_df.groupby('Open Date Short')['Open Date'].nunique().reset_index(name='Count')
 grouped_total = filtered_df.groupby(['State', 'Open Date Short']).size().reset_index(name='Count')
 
 # chart1 = alt.Chart(grouped_df).mark_bar().encode(
