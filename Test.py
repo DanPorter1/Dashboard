@@ -29,3 +29,8 @@ else:
         filtered_df = filtered_df[filtered_df['State'] == status_radio]
 
 st.write(filtered_df)
+
+st.bar_chart(
+    filtered_df,
+    x=["State"]
+    y=["Open Date"])
