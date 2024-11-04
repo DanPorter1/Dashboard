@@ -12,7 +12,7 @@ with st.sidebar:
     )
     status_radio = st.radio(
         "Choose ticket status",
-        ("Open", "On Hold", "Closed", "Resolved")
+        ("All", "Open", "On Hold", "Closed", "Resolved")
     )
 
 df = pd.read_csv("SampleData.csv")
@@ -21,4 +21,9 @@ if inc_selectbox == "All":
     st.write(df)
 else:
     filtered_df = df.loc[df['Incident Summary'] == inc_selectbox]
+    st.write(filtered_df)
+if status_radio == "All":
+    st.write(df)
+else: 
+    filtered_df = df.loc[df['State'] == status_radio]
     st.write(filtered_df)
