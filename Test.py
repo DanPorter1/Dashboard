@@ -31,9 +31,7 @@ else:
 
 st.write(filtered_df)
 
-filtered_df['Short Date'] = filtered_df['Open Date'].astype(str).str[:11]
-unique_dates = filtered_df['Short Date'].unique()
-
+# Get unique dates based on the first 11 characters of 'Open Date'
 filtered_df['Short Date'] = filtered_df['Open Date'].astype(str).str[:11]
 unique_dates = filtered_df['Short Date'].unique()
 
@@ -42,10 +40,10 @@ state_count = filtered_df.groupby(['Short Date', 'State']).size().reset_index(na
 
 # Create a clustered bar chart with different colors for each state
 chart = alt.Chart(state_count).mark_bar().encode(
-    x='Short Date',
-    y='Count',
+    x=alt.X('Short Date', axis=alt.Axis(title='Date')),
+    y=alt.Y('Count', axis=alt.Axis(title='Count')),
     color='State',
-    column='Short Date'
+    column=alt.Column('State', title='State')
 ).properties(
     width=600,
     height=400
