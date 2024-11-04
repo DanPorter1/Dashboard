@@ -40,7 +40,7 @@ grouped_df = filtered_df.groupby(['Unique Date', 'State']).size().unstack(fill_v
 # Melt the dataframe to have states as a single column
 melted_df = pd.melt(grouped_df, id_vars=['Unique Date'], var_name='State', value_name='Total Incidents')
 
-# Plot grouped bar chart
-fig = px.bar(melted_df, x='Unique Date', y='Total Incidents', color='State', barmode='group', labels={'value': 'Total Incidents', 'Unique Date': 'Date'})
+# Plot grouped bar chart with adjusted bargap to make bars touch
+fig = px.bar(melted_df, x='Unique Date', y='Total Incidents', color='State', barmode='group', labels={'value': 'Total Incidents', 'Unique Date': 'Date'}).update_traces(marker=dict(line=dict(width=0)))
 
 st.plotly_chart(fig)
