@@ -17,4 +17,7 @@ with st.sidebar:
 
 df = pd.read_csv("SampleData.csv")
 
-df.loc[df['Incident Summary'] == inc_selectbox]
+if inc_selectbox == "All":
+    st.write(df)
+else:
+    filtered_df = df.loc[df['Incident Summary'] == inc_selectbox]
