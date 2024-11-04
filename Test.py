@@ -8,11 +8,11 @@ with st.sidebar:
     st.write("Testing")
     add_selectbox = st.sidebar.selectbox(
         "Select Incident type",
-        ("Pharmacy Manager", "HSCN", "EPS", "Other")
+        ("All", "Pharmacy Manager", "HSCN", "EPS", "Other")
     )
     add_radio = st.radio(
         "Choose ticket status",
-        ("Open", "Closed", "Resolved")
+        ("Open", "On Hold", "Closed", "Resolved")
     )
 
 df = pd.read_csv("SampleData.csv")
