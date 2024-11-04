@@ -41,7 +41,8 @@ state_count = filtered_df.groupby(['Short Date', 'State']).size().reset_index(na
 chart = alt.Chart(state_count).mark_bar().encode(
     x='Short Date',
     y='Count',
-    color='State'
+    color='State',
+    column='State'
 ).properties(
     width=600,
     height=400
