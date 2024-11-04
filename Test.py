@@ -47,7 +47,7 @@ chart2 = alt.Chart(grouped_open_date).encode(
     y='Count'
 )
 
-chart3 = alt.Chart(grouped_total).mark_bar(width=10).encode(
+chart3 = alt.Chart(grouped_total).encode(
   x=alt.X('Open Date Short', sort=alt.EncodingSortField(field='Count', order='descending')),
   y='Count',
   color='State',
