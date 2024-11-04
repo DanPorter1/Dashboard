@@ -18,7 +18,10 @@ with st.sidebar:
 df = pd.read_csv("SampleData.csv")
 
 if inc_selectbox == "All":
-    st.write(df)
+    filtered_df = df
 else:
     filtered_df = df[(df['Incident Summary'] == inc_selectbox) & (df['State'] == status_radio)]
-    st.write(filtered_df)
+    
+    if status_radio != "All":
+        filtered_df = filtered_df[filtered_df['State'] == status_radio]
+st.write(filtered_df)
