@@ -33,12 +33,9 @@ else:
 st.write(filtered_df)
 #==============================================================#
 
-filtered_df['Short Date'] = filtered_df['Open Date'].astype(str).str[:11]
+grouped_df = filtered_df.groupby(['Unique Date', 'State']).size().reset_index(name='Total Incidents')
 
-# Group by unique date, state, and count occurrences
-state_count = filtered_df.groupby(['Short Date', 'State']).size().reset_index(name='Count')
-
-# Create a clustered bar chart with Plotly
-fig = px.bar(state_count, x='Short Date', y='Count', color='State', barmode='group')
+# Plot grouped bar chart
+fig = px.bar(grouped_df, x='Unique Date', y='Total Incidents', color='State', barmode='group')
 
 st.plotly_chart(fig)
