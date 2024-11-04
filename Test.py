@@ -53,7 +53,7 @@ chart3 = alt.Chart(grouped_total).mark_bar(width=10).encode(
   color='State',
   column='State'
 )
-combined_chart = chart1 | chart2 | chart3
+combined_chart = chart3
 
 st.altair_chart(combined_chart, use_container_width=True)
 # st.altair_chart(chart3, use_container_width=True)
