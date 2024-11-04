@@ -30,4 +30,5 @@ else:
 
 st.write(filtered_df)
 
-st.bar_chart(filtered_df[['State']])
+grouped_df = filtered_df.groupby('State').size().reset_index(name='count')
+st.bar_chart(grouped_df, x='State', y='count')
